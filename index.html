@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bicycle - Study Material | Class 1 English</title>
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --bg: #f8f9fa;
+            --card-bg: #ffffff;
+            --border: #dee2e6;
+            --text: #333333;
+            --light-text: #6c757d;
+            --success: #27ae60;
+            --warning: #f39c12;
+            --shadow: 0 2px 8px rgba(0,0,0,0.08);
+            --radius: 12px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        .header h1 {
+            font-size: clamp(1.2rem, 4vw, 2rem);
+            margin-bottom: 0.3rem;
+            letter-spacing: 0.5px;
+        }
+        .header .subtitle {
+            font-size: clamp(0.8rem, 2.5vw, 1rem);
+            opacity: 0.9;
+            font-weight: 400;
+        }
+        .header .badge {
+            display: inline-block;
+            background: rgba(255,255,255,0.2);
+            padding: 0.25rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--card-bg);
+            padding: 0.8rem 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            border-bottom: 1px solid var(--border);
+            overflow-x: auto;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+            box-shadow: var(--shadow);
+        }
+        .nav::-webkit-scrollbar {
+            height: 3px;
+        }
+        .nav::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 3px;
+        }
+        .nav a {
+            display: inline-block;
+            padding: 0.4rem 0.9rem;
+            margin: 0 0.2rem;
+            text-decoration: none;
+            color: var(--primary);
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 20px;
+            transition: all 0.2s;
+            background: #f0f4f8;
+            white-space: nowrap;
+        }
+        .nav a:hover,
+        .nav a:focus {
+            background: var(--secondary);
+            color: white;
+            outline: none;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* Section Cards */
+        .section {
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            margin-bottom: 1.2rem;
+            padding: 1.3rem 1rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--secondary);
+            scroll-margin-top: 120px;
+            transition: transform 0.2s;
+        }
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+        }
+        .section h2 {
+            font-size: clamp(1rem, 3.5vw, 1.3rem);
+            color: var(--primary);
+            margin-bottom: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+        .section h2 .emoji {
+            font-size: 1.4rem;
+        }
+        .section h2 .odia-title {
+            font-size: 0.85rem;
+            color: var(--light-text);
+            font-weight: 400;
+        }
+
+        /* Poem Block */
+        .poem-block {
+            background: linear-gradient(135deg, #fef9e7 0%, #fdebd0 100%);
+            border: 2px dashed #e8c876;
+            border-radius: var(--radius);
+            padding: 1.2rem;
+            font-style: italic;
+            font-size: clamp(0.9rem, 2.8vw, 1.05rem);
+            line-height: 2;
+            text-align: center;
+        }
+        .poem-block .stanza {
+            margin-bottom: 0.8rem;
+        }
+
+        /* Tables */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: clamp(0.8rem, 2.5vw, 0.95rem);
+            margin: 0.5rem 0;
+        }
+        table th {
+            background: var(--secondary);
+            color: white;
+            padding: 0.6rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        table td {
+            padding: 0.5rem 0.6rem;
+            border-bottom: 1px solid var(--border);
+        }
+        table tr:nth-child(even) td {
+            background: #f8f9fa;
+        }
+        table tr:hover td {
+            background: #e8f4fd;
+        }
+
+        /* Lists */
+        ul, ol {
+            padding-left: 1.2rem;
+            margin: 0.5rem 0;
+        }
+        ul li, ol li {
+            margin-bottom: 0.4rem;
+            font-size: clamp(0.85rem, 2.5vw, 0.95rem);
+        }
+
+        /* Q&A Block */
+        .qa-item {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            margin-bottom: 0.6rem;
+            border: 1px solid #e8ecf1;
+        }
+        .qa-item .question {
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 0.3rem;
+        }
+        .qa-item .answer {
+            color: #555;
+            padding-left: 1rem;
+            border-left: 3px solid var(--success);
+        }
+        .qa-item .odia-hint {
+            font-size: 0.8rem;
+            color: var(--light-text);
+            font-style: italic;
+            margin-top: 0.2rem;
+        }
+
+        /* Highlight Box */
+        .highlight-box {
+            background: #eaf7ea;
+            border: 1px solid #a3d9a5;
+            border-radius: 8px;
+            padding: 0.8rem 1rem;
+            margin: 0.8rem 0;
+            font-size: 0.9rem;
+        }
+        .highlight-box.warning {
+            background: #fff8e1;
+            border-color: #ffcc02;
+        }
+        .highlight-box.info {
+            background: #e3f2fd;
+            border-color: #90caf9;
+        }
+
+        /* Badge Tags */
+        .tag {
+            display: inline-block;
+            background: var(--secondary);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            margin: 0.15rem;
+            font-weight: 500;
+        }
+        .tag.odia {
+            background: #e67e22;
+        }
+        .tag.grammar {
+            background: #8e44ad;
+        }
+
+        /* Code-like */
+        code {
+            background: #f4f4f4;
+            padding: 0.15rem 0.4rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            font-family: 'Consolas', 'Monaco', monospace;
+        }
+
+        /* Grid */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.8rem;
+        }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0.6rem;
+        }
+
+        /* Memory Eye */
+        .memory-card {
+            background: #fff;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 0.8rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .memory-card:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 2px 8px rgba(52,152,219,0.2);
+        }
+        .memory-card .part {
+            font-weight: 700;
+            color: var(--accent);
+        }
+
+        /* Blockquote */
+        blockquote {
+            border-left: 4px solid var(--secondary);
+            padding: 0.6rem 1rem;
+            margin: 0.8rem 0;
+            background: #f0f7ff;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.9rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 1.5rem;
+            color: var(--light-text);
+            font-size: 0.8rem;
+            border-top: 1px solid var(--border);
+            margin-top: 1rem;
+        }
+        .footer a {
+            color: var(--secondary);
+            text-decoration: none;
+        }
+
+        /* Back to Top */
+        .back-to-top {
+            position: fixed;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            background: var(--secondary);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 44px;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 200;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .back-to-top:hover {
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .grid-2, .grid-3 {
+                grid-template-columns: 1fr;
+            }
+            .section {
+                padding: 1rem 0.8rem;
+                border-left-width: 3px;
+            }
+            .nav a {
+                padding: 0.3rem 0.6rem;
+                font-size: 0.78rem;
+            }
+            table {
+                font-size: 0.75rem;
+            }
+            table th, table td {
+                padding: 0.4rem;
+            }
+            .poem-block {
+                padding: 0.8rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .header h1 {
+                font-size: 1.1rem;
+            }
+            .section h2 {
+                font-size: 0.95rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            .nav, .back-to-top, .header {
+                position: static;
+            }
+            .section {
+                break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+            body {
+                background: white;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header class="header">
+        <h1>📚 Chapter 1: My Bicycle</h1>
+        <p class="subtitle">Full Study Material · Mixed Odia–English</p>
+        <span class="badge">Class 1 English</span>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav" aria-label="Section navigation">
+        <a href="#section1">1. Poem</a>
+        <a href="#section2">2. Summary</a>
+        <a href="#section3">3. Stanza Explanation</a>
+        <a href="#section4">4. Vocabulary</a>
+        <a href="#section5">5. Grammar</a>
+        <a href="#section6">6. Q&A</a>
+        <a href="#section7">7. Memory Eye</a>
+        <a href="#section8">8. Extra Practice</a>
+        <a href="#section9">9. Twist Questions</a>
+        <a href="#section10">10. Worksheet</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container">
+
+        <!-- Section 1: Poem Text -->
+        <article class="section" id="section1">
+            <h2>
+                <span class="emoji">📖</span> 1. Poem Text
+                <span class="odia-title">(ପୂର୍ଣ୍ଣ କବିତା)</span>
+            </h2>
+            <p style="margin-bottom:0.5rem;font-size:0.85rem;color:var(--light-text);">
+                <em>Note: The "Wheels on the Bus" part is an introductory song, not the main poem.</em>
+            </p>
+            <div class="poem-block">
+                <div class="stanza">
+                    <strong>Stanza 1</strong><br>
+                    The seat is blue in colour.<br>
+                    The tyres and pedals are black.<br>
+                    Sometimes fast, sometimes slow,<br>
+                    But my bicycle is always on track.
+                </div>
+                <div class="stanza">
+                    <strong>Stanza 2</strong><br>
+                    To keep my bicycle moving,<br>
+                    All I need is some air.<br>
+                    I put on my little helmet,<br>
+                    And go happily everywhere.
+                </div>
+            </div>
+            <p style="font-size:0.8rem;color:var(--light-text);margin-top:0.5rem;">
+                ⚠️ Bell sound is not given in the poem; see Question 4 in Q&A section.
+            </p>
+        </article>
+
+        <!-- Section 2: Odia Summary -->
+        <article class="section" id="section2">
+            <h2>
+                <span class="emoji">📝</span> 2. Odia Summary
+                <span class="odia-title">(ସାରାଂଶ)</span>
+            </h2>
+            <p>ଏହି କବିତାଟି ଏକ <strong>ଛୋଟ ପିଲାର bicycle</strong> (ସାଇକେଲ) ବିଷୟରେ ।</p>
+            <ul>
+                <li>Bicycle seat <strong>blue colour</strong> (ନୀଳ) ।</li>
+                <li>Tyres (ଟାୟର) ଓ pedals (ପାଦଥିବା) <strong>black colour</strong> (କଳା) ।</li>
+                <li>Bicycle ଟି <strong>sometimes fast, sometimes slow</strong> (ବେଳେବେଳେ ଶୀଘ୍ର, ବେଳେବେଳେ ଧୀର) ଚାଲେ, କିନ୍ତୁ <strong>always on track</strong> (ସବୁବେଳେ ଟ୍ରାକ/ବାଟରେ) ରହେ ।</li>
+                <li>Bicycle <strong>move</strong> (ଚଳାଇବା) ପାଇଁ <strong>air</strong> (ପବନ) ଦରକାର ।</li>
+                <li>Child <strong>put on helmet</strong> (helmet ପିନ୍ଧେ) <strong>safety</strong> (ସୁରକ୍ଷା) ପାଇଁ ।</li>
+                <li><strong>Happily everywhere</strong> (ଖୁସିରେ ସବୁଆଡ଼େ) bicycle ଚଳାଏ ।</li>
+            </ul>
+        </article>
+
+        <!-- Section 3: Stanza-wise Explanation -->
+        <article class="section" id="section3">
+            <h2>
+                <span class="emoji">🔍</span> 3. Stanza-wise Explanation
+                <span class="odia-title">(ଓଡ଼ିଆ ବ୍ୟାଖ୍ୟା)</span>
+            </h2>
+
+            <blockquote>
+                <strong>Stanza 1</strong> (seat, tyres, pedals, speed)
+            </blockquote>
+            <ul>
+                <li><strong>The seat is blue in colour.</strong> – Bicycle seat blue colour (ନୀଳ ରଙ୍ଗ) ।</li>
+                <li><strong>The tyres and pedals are black.</strong> – Tyres (ଚକ) ଓ pedals (ପାଦଥିବା) black (କଳା) ।</li>
+                <li><strong>Sometimes fast, sometimes slow,</strong> – Bicycle sometimes (ବେଳେବେଳେ) fast (ଶୀଘ୍ର), sometimes slow (ଧୀର) ।</li>
+                <li><strong>But my bicycle is always on track.</strong> – But (କିନ୍ତୁ) my bicycle always (ସବୁବେଳେ) track (ସଠିକ ରାସ୍ତା/ପଥ) ଉପରେ (ଉପରେ) ଥାଏ (ଥାଏ) ।<br>
+                    <em>Artha:</em> Bicycle sabubele nirdista rasta anusarana kare.</li>
+            </ul>
+
+            <blockquote>
+                <strong>Stanza 2</strong> (moving, air, helmet, everywhere)
+            </blockquote>
+            <ul>
+                <li><strong>To keep my bicycle moving,</strong> – Bicycle moving (ଚଳମାନ) ରଖିଲେ (ରଖିବାକୁ) ।</li>
+                <li><strong>All I need is some air.</strong> – ମାତ୍ର (ମାତ୍ର) need (ଦରକାର) air (ପବନ) ।</li>
+                <li><strong>I put on my little helmet,</strong> – ମୁଁ (ମୁଁ) ମୋ (ମୋ) ଛୋଟ (ଛୋଟ) helmet (helmet) ପିନ୍ଧେ (ପିନ୍ଧେ) ।</li>
+                <li><strong>And go happily everywhere.</strong> – ଏବଂ (ଏବଂ) ଖୁସିରେ (ଖୁସିରେ) ସବୁ ଜାଗା (ସବୁଆଡ଼େ) ଯାଏ (ଯାଏ) ।</li>
+            </ul>
+        </article>
+
+        <!-- Section 4: Vocabulary -->
+        <article class="section" id="section4">
+            <h2>
+                <span class="emoji">📗</span> 4. Vocabulary
+                <span class="odia-title">(ନୂତନ ଶବ୍ଦ – New Words)</span>
+            </h2>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Word</th>
+                            <th>English Meaning</th>
+                            <th>Odia Meaning (ଓଡ଼ିଆ)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>pedal</strong></td>
+                            <td>the part of a bicycle you push with foot</td>
+                            <td>bicycle re paad rakhiba bhaga (ପାଦଥିବା)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>aside</strong></td>
+                            <td>to one side</td>
+                            <td>ekapasare (ଏକ-ପଟକୁ) <span class="tag">not in poem</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>sometimes</strong></td>
+                            <td>not all the times</td>
+                            <td>kebe kebe, samay samay (ବେଳେବେଳେ)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>track</strong></td>
+                            <td>path or route on which a bicycle runs</td>
+                            <td>rasta, patha (ଟ୍ରାକ, ରାସ୍ତା)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>put on</strong></td>
+                            <td>wear</td>
+                            <td>pindhiba (ପିନ୍ଧିବା, ପିନ୍ଧେ)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>everywhere</strong></td>
+                            <td>in all places</td>
+                            <td>sabu jaga, sabuṭhare (ସବୁଆଡ଼େ, ସବୁଠାରେ)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>helmet</strong></td>
+                            <td>hard hat for head safety</td>
+                            <td>matha surakhya astra (head safety hat)</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <!-- Section 5: Grammar Points -->
+        <article class="section" id="section5">
+            <h2>
+                <span class="emoji">✏️</span> 5. Grammar Points
+                <span class="odia-title">(Grammar ଅଧ୍ୟୟନ)</span>
+            </h2>
+            <div class="grid-2">
+                <div>
+                    <strong>Adjectives (Colour/Description):</strong>
+                    <br><code>blue</code>, <code>black</code>, <code>little</code>
+                    <br><span style="font-size:0.8rem;color:var(--light-text);">Colour ଓ size ବତାନ୍ତି ।</span>
+                </div>
+                <div>
+                    <strong>Adverbs:</strong>
+                    <br><code>sometimes</code> (time), <code>happily</code> (manner), <code>always</code> (frequency)
+                </div>
+                <div>
+                    <strong>Preposition 'on':</strong>
+                    <br><code>put on</code> (pindhiba), <code>on track</code> (rasta upare)
+                </div>
+                <div>
+                    <strong>Verb forms:</strong>
+                    <br>Simple Present – <code>is</code>, <code>are</code>, <code>go</code>, <code>put</code>, <code>need</code>
+                </div>
+            </div>
+            <p style="margin-top:0.8rem;">
+                <strong>Possessive Adjective:</strong> <code>my bicycle</code>, <code>my little helmet</code>
+            </p>
+            <div style="margin-top:0.5rem;">
+                <span class="tag grammar">Adjectives</span>
+                <span class="tag grammar">Adverbs</span>
+                <span class="tag grammar">Prepositions</span>
+                <span class="tag grammar">Simple Present</span>
+                <span class="tag grammar">Possessives</span>
+            </div>
+        </article>
+
+        <!-- Section 6: Questions & Answers -->
+        <article class="section" id="section6">
+            <h2>
+                <span class="emoji">❓</span> 6. Questions & Answers
+                <span class="odia-title">(ପ୍ରଶ୍ନର ଉତ୍ତର)</span>
+            </h2>
+            <p style="font-size:0.85rem;color:var(--light-text);margin-bottom:0.8rem;">
+                Answer in <strong>complete sentences</strong> – Odia translation included for help.
+            </p>
+
+            <div class="qa-item">
+                <p class="question">1. What is the poem about?</p>
+                <p class="answer">The poem is about a child's bicycle.</p>
+                <p class="odia-hint">Odia: Eh kabiṭā tiye gotie chota pila bicycle bisayare.</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">2. What colour is the bicycle?</p>
+                <p class="answer">The seat is blue, and the tyres and pedals are black. So the bicycle is blue and black.</p>
+                <p class="odia-hint">Odia: Bicycle ra seat neeli, tyres o pedals kaḷa. Tenu bicycle neelī o kaḷa rangara.</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">3. How many times is the word 'I' used in the poem?</p>
+                <p class="answer">Only <strong>one time</strong> – in the line "I put on my little helmet".</p>
+                <p class="odia-hint">Odia: Sabubele – "I put on my little helmet" line re thile.</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">4. How does the bell sound?</p>
+                <p class="answer">The bell is not mentioned in the poem. However, generally a bicycle bell sounds "<strong>tring, tring</strong>".</p>
+                <p class="odia-hint">Odia: Kabita re bell katha nahin. Sadharanata bell 'tring tring' sound kare.</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">5. What colour is the seat?</p>
+                <p class="answer">The seat is <strong>blue</strong>. (Seat neelī.)</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">6. What is the colour of tyres and pedals?</p>
+                <p class="answer">They are <strong>black</strong>. (Tyres o pedals kaḷa.)</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">7. What does the bicycle need to move?</p>
+                <p class="answer">It needs <strong>air</strong>. (Bicycle move karibā pāin air/pabana dorkār.)</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">8. Why does the child put on a helmet?</p>
+                <p class="answer">For <strong>safety</strong>, to protect the head while riding. (Muṇḍa surakhya pain helmet pindhe.)</p>
+            </div>
+        </article>
+
+        <!-- Section 7: Memory Eye -->
+        <article class="section" id="section7">
+            <h2>
+                <span class="emoji">🧠</span> 7. Visual Memory Development Technique
+                <span class="odia-title">(Memory Activity)</span>
+            </h2>
+            <p><strong>Goal:</strong> Poem picture mind're "eye camera" re capture kara.</p>
+
+            <div class="highlight-box info">
+                <strong>Whole Memory:</strong> Take the full poem picture in your mind. Now answer:
+            </div>
+            <div class="grid-2" style="margin-top:0.5rem;">
+                <div class="memory-card">
+                    <span class="part">(i)</span> Which paragraph tells about keeping bicycle moving?<br>
+                    <strong>→ Stanza 2</strong>
+                </div>
+                <div class="memory-card">
+                    <span class="part">(ii)</span> Which lines tell about seat and tyre?<br>
+                    <strong>→ Stanza 1</strong>: "The seat is blue…" and "The tyres and pedals are black."
+                </div>
+                <div class="memory-card">
+                    <span class="part">(iii)</span> Which paragraph tells about bicycle moving?<br>
+                    <strong>→ Stanza 2</strong> ("To keep my bicycle moving…")
+                </div>
+                <div class="memory-card">
+                    <span class="part">(iv)</span> Which paragraph tells about bell and pedal?<br>
+                    <strong>→ Bell not in poem</strong>; pedal in <strong>Stanza 1</strong>
+                </div>
+            </div>
+
+            <div class="highlight-box" style="margin-top:0.8rem;">
+                <strong>Part Memory:</strong> Without seeing, recall these words from the picture:
+                <br><code>move</code>, <code>colour</code>, <code>sometimes</code>, <code>track</code>, <code>air</code>, <code>helmet</code>, <code>everywhere</code>
+                <br>Then use your index finger to "point" to where they appear in the mental image.
+            </div>
+        </article>
+
+        <!-- Section 8: Extra Practice -->
+        <article class="section" id="section8">
+            <h2>
+                <span class="emoji">🎨</span> 8. Extra Practice
+                <span class="odia-title">(Suggestions)</span>
+            </h2>
+            <ul>
+                <li><strong>Draw a bicycle</strong> with blue seat, black tyres and black pedals. Add a helmet on the rider. Label the parts in Odia:
+                    <br><span class="tag odia">seat = asaana (ଆସନ)</span>
+                    <span class="tag odia">tyre = taar (ଟାୟର)</span>
+                    <span class="tag odia">pedal = paadatha (ପାଦଥିବା)</span>
+                    <span class="tag odia">helmet = śirṣa-trana (helmet/ଶିରଷ-ତ୍ରାଣ)</span>
+                </li>
+                <li><strong>Recite the poem with actions:</strong> roll hands for wheels, pretend to pedal, touch head for helmet.</li>
+                <li>Practice writing the new words 3 times each.</li>
+                <li>Make a paper bicycle craft and colour it.</li>
+            </ul>
+        </article>
+
+        <!-- Section 9: Twist Questions -->
+        <article class="section" id="section9">
+            <h2>
+                <span class="emoji">🌀</span> 9. Twist Questions
+                <span class="odia-title">(ଘୁମୁରା ପ୍ରଶ୍ନ)</span>
+            </h2>
+            <p style="font-size:0.85rem;color:var(--light-text);margin-bottom:0.8rem;">
+                <em>Think carefully! These aren't direct "copy from the poem" questions.</em>
+            </p>
+
+            <div class="qa-item">
+                <p class="question">Q1. (Colour Twist) If you could repaint your bicycle, what one new colour would you choose for the seat? Why?</p>
+                <p class="answer">Open answer – student's choice with a reason. Example: Red, because my shirt is red.</p>
+                <p class="odia-hint">Odia: Tume seat ra colour blue badalile, kouthi colour karibe? Kana pain?</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">Q2. (Air Magic) Imagine one day you open the tyre and all the air goes out – what happens?</p>
+                <p class="answer">The bicycle cannot move properly. It will be very hard to pedal, and the ride will be bumpy (flat tyre).</p>
+                <p class="odia-hint">Odia: Jodi tyre ru sabu paban palaey jaae, bicycle ki heba? – Bicycle ṭhik se chaliparibani; pedal mariba kathina, jhatka lagiba.</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">Q3. (Never in the Poem) What colour do you think the little helmet is?</p>
+                <p class="answer">Guess – no right/wrong. Motivates imagination. Eg: Maybe red, like a strawberry. Or white, like safety.</p>
+                <p class="odia-hint">Odia: Kabitare helmet ra colour kahini. Tume bhabucha helmet ra colour kana?</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">Q4. (Bell Sound Detective) If you were the poet, what two words would you write for the bell sound?</p>
+                <p class="answer">"The bell on my cycle goes tring, tring, tring…" or "The bell rings 'ting-ting' all the way."</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">Q5. (Track Mystery) If there is no road, only a big green field – is the bicycle still "on track"?</p>
+                <p class="answer">Bicycle can move on the field, but it's not a "track". The poem says "on track" meaning following a proper path. On a field, there's no fixed track, so it might wander. Also harder to ride on grass.</p>
+                <p class="odia-hint">Odia: Rasta nahin, kebala padiya. Bicycle 'track' re chalipariba ki?</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">Q6. (Opposite Day) Rewrite with opposite meaning: "Sometimes fast, sometimes slow"</p>
+                <p class="answer">"Always the same speed" or "Never changing speed" – clever answers encouraged.</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">Q7. (Little Helmet Puzzle) Why "little" helmet? Can a father wear it?</p>
+                <p class="answer">It's little because the child is small. A father cannot wear it; it's too small. The word "little" shows it's made for a child.</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">Q8. (Emotion Hunt) Find the word that tells us the child's feeling while riding.</p>
+                <p class="answer"><strong>happily</strong> (go happily everywhere).</p>
+                <p class="odia-hint">Odia: Ditiya stanza re pila khusi achhi boliki kete sabda? – 'happily' – mane khusire.</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">Q9. (Rhyme Twist) Find a word that rhymes with "black" from the poem.</p>
+                <p class="answer"><strong>track</strong> (black – track: /blæk/ and /træk/ – they share the "ack" sound).</p>
+            </div>
+            <div class="qa-item">
+                <p class="question">Q10. (Riddle Time – Parts of Bicycle)</p>
+                <p class="answer">
+                    • I am round and black, I love the road. Without air, I become flat. → <strong>Tyre</strong><br>
+                    • You push me down and up with your foot, and the bicycle moves forward. I am not the wheel. → <strong>Pedal</strong><br>
+                    • I sit on top, you rest on me; I am blue in the poem. → <strong>Seat</strong>
+                </p>
+            </div>
+        </article>
+
+        <!-- Section 10: Worksheet Preview -->
+        <article class="section" id="section10">
+            <h2>
+                <span class="emoji">📄</span> 10. Worksheet Preview
+                <span class="odia-title">(All Sections at a Glance)</span>
+            </h2>
+            <p>The complete worksheet includes:</p>
+            <ul>
+                <li><strong>A. Word Match</strong> – English to Odia matching</li>
+                <li><strong>B. One Word Answers</strong> – Quick recall</li>
+                <li><strong>C. Fill in the Blanks</strong> – Poem completion</li>
+                <li><strong>D. True or False</strong> – Understanding check</li>
+                <li><strong>E. Twist Zone</strong> – Creative thinking</li>
+                <li><strong>F. Creative Corner</strong> – Drawing activity</li>
+                <li><strong>G. Memory Eye</strong> – Visual recall exercise</li>
+            </ul>
+            <div class="highlight-box warning">
+                <strong>📥 Download:</strong> A printable PDF worksheet is available. Ask your teacher or parent to print it for practice.
+            </div>
+        </article>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>📚 <strong>My Bicycle</strong> – Chapter 1 Study Material</p>
+        <p>Class 1 English · Mixed Odia–English · Mobile Responsive</p>
+        <p style="margin-top:0.3rem;">Made with ❤️ for young learners | <a href="#section1">Back to Top</a></p>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#section1" class="back-to-top" title="Back to Top" aria-label="Back to top">⬆</a>
+
+</body>
+</html>
